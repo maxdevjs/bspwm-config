@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+
+if [[ -n `xrandr | grep 'LVDS-1 connected'` ]];then
+  LVDS_STRING=LVDS-1
+elif [[ -n `xrandr | grep 'LVDS1 connected'` ]];then
+  LVDS_STRING=LVDS1
+fi
+echo $LVDS_STRING
+
+#if [[ -n `xrandr | grep 'HDMI-1 connected'` ]];then
+#  HDMI_STRING=HDMI-1
+#elif [[ -n `xrandr | grep 'HDMI1 connected'` ]];then
+#  HDMI_STRING=HDMI1
+#fi
+#echo $HDMI_STRING
+
+#https://github.com/davidv171/freshDots/blob/master/bspwm/monitorsetup
+#hdmi="$(xrandr | grep 'HDMI-1 connected' && xrandr --output LVDS1 --auto --output HDMI-1 --auto --left-of LVDS1)";
+hdmi="$(xrandr --output ${LVDS_STRING} --auto --output HDMI-1 --auto --left-of ${LVDS_STRING})";
+#vga="$(xrandr | grep 'VGA-1 connected' && xrandr --output eDP-1 --auto --output VGA-1 --auto --above eDP-1)";
+
+if [[ -n $hdmi ]];then
+    bspc monitor ${LVDS_STRING} -d 1-web 2-shell 3-fm 4 5 6 7-test 8-crap 9-what 10-monitor 11 12 13 14
+    bspc monitor HDMI-1 -d 2 7
+    echo "multi-monitor"
+else
+    bspc monitor ${LVDS_STRING} -d 1-web 2-shell 3-fm 4 5 6 7-test 8-crap 9-what 10-monitor
+    echo "single monitor"
+fi
+
+echo "Done"
+
