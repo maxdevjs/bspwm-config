@@ -3,6 +3,9 @@ Configuration files for bspwm
 
 Temporary repo for my bspwm config files.
 
+Companion repo of this configuration is [maxdevjs/sxhkd-config](https://github.com/maxdevjs/sxhkd-config).
+The idea is to manage all my dotfiles parts as submmodules, perhaps with [yadm](https://yadm.io/).
+
 ## Times of change
 
 Overall, have been a few nice years with [i3](https://i3wm.org/) and [Solus](https://getsol.us/home/), nonetheless came the time to explore new horizons.
