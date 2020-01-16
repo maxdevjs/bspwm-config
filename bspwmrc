@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 #Reset rules at every reload
 bspc rule -r "*"
@@ -43,6 +43,8 @@ _bc merge_overlapping_monitors		true
 _bc normal_border_color 		"#312e30"
 _bc active_border_color 		"#b1932b"
 _bc focused_border_color    		"#6da280"
+#_bc focused_border_color    		${xrdb:background:#4d4d4c}
+#_bc focused_border_color			$(xrdb -query | grep 'foreground:' | awk '{print $NF}')
 _bc presel_feedback_color		"#2a2829"
 _bc urgent_border_color			"#dd2727"
 	
@@ -71,11 +73,17 @@ nm-applet &
 #sh .screenlayout/default.sh &
 #feh --bg-fill ~/Pictures/blur.png &
 killall "compton"
-compton -c -o 0.3 -r 8 -f --inactive-dim 0.2 & 
+compton -c -o 0.3 -r 8 -f --inactive-dim 0.2 --shadow-exclude "bounding_shaped" & 
 xsetroot -cursor_name left_ptr &
 #killall polybar
 #polybar -c ~/.config/polybar/config bspwm bottom
-~/.config/polybar/polybar_launcher 
+$XDG_CONFIG_HOME/polybar/polybar_launcher 
+$HOME/bin/system-help-msg
+#if [[ `echo $SHELL` =~ 'zsh' ]]
+#then 
+#  $ZDOTDIR/.xprofile
+#fi
+#~/.config/zsh/.xprofile
 
 #Scratchpad
 #github.com/davidv171/freshDots
@@ -85,6 +93,7 @@ xsetroot -cursor_name left_ptr &
 #bspc rule -a scratchpad sticky=on state=floating hidden=on
 
 #bspc desktop 2-shell --focus &
+
 
 
 
