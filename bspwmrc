@@ -77,8 +77,10 @@ compton -c -o 0.3 -r 8 -f --inactive-dim 0.2 --shadow-exclude "bounding_shaped" 
 xsetroot -cursor_name left_ptr &
 #killall polybar
 #polybar -c ~/.config/polybar/config bspwm bottom
-$XDG_CONFIG_HOME/polybar/polybar_launcher 
-$HOME/bin/system-help-msg
+#$XDG_CONFIG_HOME/polybar/polybar_launcher
+#$HOME/bin/system-help-msg
+#$HOME/bin/system-remaps
+$SHELL_COMMONS/x11_setup
 #if [[ `echo $SHELL` =~ 'zsh' ]]
 #then 
 #  $ZDOTDIR/.xprofile
