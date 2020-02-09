@@ -63,24 +63,22 @@ _bc borderless_monocle  		true
 _bc gapless_monocle     		true
 
 
-#Autostart
-killall "nm-applet"
-nm-applet &
+
 #killall "dunst"
 #dunst &
 #nitrogen --restore &
 #polybar top &
 #sh .screenlayout/default.sh &
 #feh --bg-fill ~/Pictures/blur.png &
-killall "compton"
-compton -c -o 0.3 -r 8 -f --inactive-dim 0.2 --shadow-exclude "bounding_shaped" & 
-xsetroot -cursor_name left_ptr &
+#killall "compton"
+#compton -c -o 0.3 -r 8 -f --inactive-dim 0.2 --shadow-exclude "bounding_shaped" & 
+#xsetroot -cursor_name left_ptr &
 #killall polybar
 #polybar -c ~/.config/polybar/config bspwm bottom
 #$XDG_CONFIG_HOME/polybar/polybar_launcher
 #$HOME/bin/system-help-msg
 #$HOME/bin/system-remaps
-$SHELL_COMMONS/x11_setup
+$HOME/.config/wms/commons/x11_setup
 #if [[ `echo $SHELL` =~ 'zsh' ]]
 #then 
 #  $ZDOTDIR/.xprofile
@@ -96,6 +94,12 @@ $SHELL_COMMONS/x11_setup
 
 #bspc desktop 2-shell --focus &
 
+bspc subscribe all | while read line; do polybar-msg hook title 1; done &
+bspc subscribe all | while read line; do polybar-msg hook updates-ipc 1; done &
 
-
+# ZSH
+if (( $+commands[wmname] )) {
+  # Java Swing support
+  wmname LG3D
+}
 
